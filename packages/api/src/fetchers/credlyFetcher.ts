@@ -34,7 +34,7 @@ export async function fetchBadgePage(
   const url = `${CREDLY_BASE_URL}/${encodeURIComponent(username)}/badges.json?page=${page}&per=${perPage}&sort=most_popular&filter=all`;
 
   const timeout = createTimeout(FETCH_TIMEOUT_MS);
-  let response: Response;
+  let response: Awaited<ReturnType<typeof fetch>>;
   try {
     response = await fetch(url, {
       signal: timeout.signal,
