@@ -1,3 +1,4 @@
+/// <reference lib="dom" />
 import type { CredlyBadgesResponse, CredlyBadge, CredlyMetadata } from "../types/credly.js";
 import type { NormalizedBadge, BadgeStats } from "../types/card.js";
 import { AppError } from "../middleware/errorHandler.js";
@@ -34,7 +35,7 @@ export async function fetchBadgePage(
   const url = `${CREDLY_BASE_URL}/${encodeURIComponent(username)}/badges.json?page=${page}&per=${perPage}&sort=most_popular&filter=all`;
 
   const timeout = createTimeout(FETCH_TIMEOUT_MS);
-  let response: Awaited<ReturnType<typeof fetch>>;
+  let response: Response;
   try {
     response = await fetch(url, {
       signal: timeout.signal,
